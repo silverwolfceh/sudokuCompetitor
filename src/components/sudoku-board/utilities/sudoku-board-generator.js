@@ -1,6 +1,7 @@
 import { validateCell } from '../utilities/sudoku-board-validator';
 import { solve, hasUniqueSolution } from '../utilities/sudoku-AI';
 
+let baseurl = "http://localhost:8080";
 function getRandomIntBetween(min, max) {
     return Math.floor(Math.random() * (max + 1 - min) + min);
 }
@@ -50,14 +51,14 @@ function getXBoard(params) {
     {
         for(let j = 0; j < 9; j++)
         {
-            board[i][j] = parseInt(val[i*8+ j]);
+            board[i][j] = parseInt(val[i*9+ j]);
         }
     }
     return board;
     
 }
 
-function generateURL(board) {
+function generateBoarMeta(board) {
     let val = "";
     for(let i = 0; i < 9; i++)
     {
@@ -79,14 +80,12 @@ function findPopulatedCell(board) {
 }
 
 
-export default function generateSudokuBoard() {
-    let url = document.location.href;
-    console.log(url);
-    if(url.indexOf("boardid") != -1)
+export default function generateSudokuBoard(force = false) {
+    let boardMeta = document.getElementById('linktoboard').value;
+    if(boardMeta != "" && !force)
     {
-        let params = url.split("boardid=")[1];
-        console.log(params);
-        return getXBoard(params);
+        console.log(boardMeta);
+        return getXBoard(boardMeta);
     }
     else
     {
@@ -100,7 +99,7 @@ export default function generateSudokuBoard() {
             board[row][col] = 0;
         }
         
-        document.location.href = url + "/?boardid=" + generateURL(board);
+        document.getElementById('linktoboard').value = generateBoarMeta(board);
         return board;
     }
     

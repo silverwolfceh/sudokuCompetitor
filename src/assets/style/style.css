@@ -107,9 +107,10 @@ span {
 
 .github-link {
     display: inline-block;
-    font-size: 18px;
+    font-size: 10px;
     font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
     transition-duration: 0.25s;
+    width: 100%;
 }
 
 .github-link:hover {

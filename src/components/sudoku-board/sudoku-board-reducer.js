@@ -125,8 +125,11 @@ export function resetBoard() {
 }
 
 export function newBoard() {
-    document.location.href = "/#";
-    location.reload();
+    return dispatch => {
+        const board = generateSudokuBoard(true);
+        dispatch(resetAction());
+        dispatch(updateBoardAction({ board, isEmpty: isEmpty(board) }));
+    };
 }
 export function generateBoard() {
     return dispatch => {
