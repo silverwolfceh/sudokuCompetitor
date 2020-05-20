@@ -14,7 +14,7 @@ export default class SudokuBoardView extends Component {
     }
 
     render() {
-        document.title = 'Sudoku AI';
+        document.title = 'Simple Sudoku';
         return (
             <div className={'sudoku-board'}>
                 <h1 className={'heading'}>{document.title}</h1>

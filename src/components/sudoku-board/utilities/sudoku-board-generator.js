@@ -1,7 +1,6 @@
 import { validateCell } from '../utilities/sudoku-board-validator';
 import { solve, hasUniqueSolution } from '../utilities/sudoku-AI';
 
-let baseurl = "http://localhost:8080";
 function getRandomIntBetween(min, max) {
     return Math.floor(Math.random() * (max + 1 - min) + min);
 }
@@ -34,8 +33,8 @@ function generateRandomXBoard() {
     return board;
 }
 
-function getXBoard(params) {
-    let val = window.atob(params).split(",");
+function loadBoardFromMeta(boardMeta) {
+    let val = window.atob(boardMeta).split(",");
     let board = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -85,7 +84,7 @@ export default function generateSudokuBoard(force = false) {
     if(boardMeta != "" && !force)
     {
         console.log(boardMeta);
-        return getXBoard(boardMeta);
+        return loadBoardFromMeta(boardMeta);
     }
     else
     {
@@ -93,12 +92,11 @@ export default function generateSudokuBoard(force = false) {
         solve(board);
 
         let row, col;
-        const numberOfCellsToClear = getRandomIntBetween(27, 63);
+        const numberOfCellsToClear = getRandomIntBetween(40, 63);
         for (let i = 0; i < numberOfCellsToClear; i++) {
             [row, col] = findPopulatedCell(board);
             board[row][col] = 0;
         }
-        
         document.getElementById('linktoboard').value = generateBoarMeta(board);
         return board;
     }
