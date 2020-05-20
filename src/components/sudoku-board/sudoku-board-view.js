@@ -5,6 +5,7 @@ export default class SudokuBoardView extends Component {
         super(props);
 
         this.renderSudokuBoard = this.renderSudokuBoard.bind(this);
+        this.renderLevelSlider = this.renderLevelSlider.bind(this);
         this.renderSolveClearButton = this.renderSolveClearButton.bind(this);
         this.renderGenerateResetButton = this.renderGenerateResetButton.bind(this);
         this.renderGitHubLink = this.renderGitHubLink.bind(this);
@@ -19,6 +20,8 @@ export default class SudokuBoardView extends Component {
             <div className={'sudoku-board'}>
                 <h1 className={'heading'}>{document.title}</h1>
                 {this.renderGitHubLink()}
+                {/* <br />
+                {this.renderLevelSlider()} */}
                 <br />
                 {this.renderSudokuBoard()}
                 <div className={'buttons-container'}>
@@ -63,7 +66,7 @@ export default class SudokuBoardView extends Component {
                 <span>Clear</span>
             </button>
         ) : (
-            // <button className={'button'} onClick={this.props.solveBoard} disabled={!this.props.sudokuBoard.isValid}>
+            // <button className={'button'} onClick={this.props.solveBoard} disabled={!this.props.sudokuBoard.isValid} >
             //     <span>Solve</span>
             // </button>
             <button className={'button'} onClick={this.props.newBoard}>
@@ -72,7 +75,16 @@ export default class SudokuBoardView extends Component {
         );
     }
 
+    renderLevelSlider() {
+        return (
+            <div className={'slidecontainer'}>
+                <input type="range" min="1" max="100" value="50" className={'slider'} id="myRange"></input>
+            </div>
+        );
+    }
+
     renderGenerateResetButton() {
+       
         return this.props.sudokuBoard.isEmpty ? (
             <button className={'button'} onClick={this.props.generateBoard}>
                 <span>Load</span>
@@ -87,9 +99,15 @@ export default class SudokuBoardView extends Component {
     }
 
     renderGitHubLink() {
+        const solbtn = {
+            display: 'none'
+        };
         return (
             <div className={'github-link-container'}>
                 <input type='text' id='linktoboard' className={'github-link'} placeholder='Insert Board Meta'></input>
+                <button className={'button'} style={solbtn} onClick={this.props.solveBoard} disabled={!this.props.sudokuBoard.isValid} >
+                    <span>Solve</span>
+                </button>
                 {/* <a className={'github-link'} href="https://github.com/JPStrydom/Sudoku-AI.git">
                     Project GitHub Repository
                 </a> */}

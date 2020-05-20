@@ -43,6 +43,9 @@ span {
     font-size: 28px;
 }
 
+solvebtn {
+    display: none;
+}
 .sudoku-board {
     width: 462px;
     margin-left: auto;
