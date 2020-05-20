@@ -27,3 +27,5 @@ If you'd like to run this project yourself, you can follow the following steps:
 3) Run the command `npm install` in the same directory as the source code to install all the required packages
 4) Run the command `npm run dev` in the same directory as the source code to start the development server
 5) Visit the website through any modern browser by going to the web-address [http://localhost:8080/](http://localhost:8080/)
+
+[![Run on Repl.it](https://repl.it/badge/github/silverwolfceh/sudokuCompetitor)](https://repl.it/github/silverwolfceh/sudokuCompetitor)
